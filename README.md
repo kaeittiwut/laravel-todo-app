@@ -4,9 +4,9 @@ In this project, I built a Todo app when I studied Vue.js that uses the API serv
 
 Official Project Repository from instructor Andre Madarang. (https://github.com/drehimself/todo-laravel)
 
-> Using "php artisan serve", it uses a PHP built-in webserver which is single-threaded process, So PHP applications will stall or freezing if a request is blocked. When making calls to itself the thread blocked waiting for its own reply.
->
-> The solution is to either separate the providing application and consuming application into their own instance or run it on a multi-threaded webserver such as Apache or NGINX. Or if you are looking for a quick fix to test your updates - you can get this done by opening up two terminal.
+## Front-End project repository
+
+Vue-todo-app (https://github.com/kaeittiwut/vue-todo-app)
 
 ## Install all dependencies and migrate database
 
@@ -18,6 +18,8 @@ $ composer install
 $ php artisan key:generate
 
 $ php artisan migrate --seed
+
+$ php artisan passport:install
 
 $ php artisan serve
 ```
@@ -31,6 +33,10 @@ PASSPORT_CLIENT_SECRET= ??
 ```
 
 ## Run second terminal for Passport Oauth2 [port:8001]
+
+> Using "php artisan serve", it uses a PHP built-in webserver which is single-threaded process, So PHP applications will stall or freezing if a request is blocked. When making calls to itself the thread blocked waiting for its own reply.
+>
+> The solution is to either separate the providing application and consuming application into their own instance or run it on a multi-threaded webserver such as Apache or NGINX. Or if you are looking for a quick fix to test your updates - you can get this done by opening up two terminal.
 
 ```
 $ php artisan serve --port=8001

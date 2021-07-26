@@ -14,17 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::get('/todos', [App\Http\Controllers\TodosController::class, 'index']);
+    Route::post('/todos', [App\Http\Controllers\TodosController::class, 'store']);
+    Route::patch('/todos/{todo}', [App\Http\Controllers\TodosController::class, 'update']);
+    Route::patch('/todosCheckAll', [App\Http\Controllers\TodosController::class, 'updateAll']);
+    Route::delete('/todos/{todo}', [App\Http\Controllers\TodosController::class, 'destroy']);
+    Route::delete('/todosDeleteCompleted', [App\Http\Controllers\TodosController::class, 'destroyCompleted']);
+
+    Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
 });
 
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
-Route::middleware('auth:api')->post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
-
-Route::get('/todos', [App\Http\Controllers\TodosController::class, 'index']);
-Route::post('/todos', [App\Http\Controllers\TodosController::class, 'store']);
-Route::patch('/todos/{todo}', [App\Http\Controllers\TodosController::class, 'update']);
-Route::patch('/todosCheckAll', [App\Http\Controllers\TodosController::class, 'updateAll']);
-Route::delete('/todos/{todo}', [App\Http\Controllers\TodosController::class, 'destroy']);
-Route::delete('/todosDeleteCompleted', [App\Http\Controllers\TodosController::class, 'destroyCompleted']);
