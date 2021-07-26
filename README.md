@@ -4,6 +4,70 @@ In this project, I built a Todo app when I studied Vue.js that uses the API serv
 
 Official Project Repository from instructor Andre Madarang. (https://github.com/drehimself/todo-laravel)
 
+> Using "php artisan serve", it uses a PHP built-in webserver which is single-threaded process, So PHP applications will stall or freezing if a request is blocked. When making calls to itself the thread blocked waiting for its own reply.
+>
+> The solution is to either separate the providing application and consuming application into their own instance or run it on a multi-threaded webserver such as Apache or NGINX. Or if you are looking for a quick fix to test your updates - you can get this done by opening up two terminal.
+
+## Install all dependencies and migrate database
+
+```bash
+$ cp .env.example .env
+
+$ composer install
+
+$ php artisan key:generate
+
+$ php artisan migrate --seed
+
+$ php artisan serve
+```
+
+## Set Passport client_id and client secret in .env file
+
+```
+PASSPORT_LOGIN_ENDPOINT=http://localhost:8001/oauth/token
+PASSPORT_CLIENT_ID= ??
+PASSPORT_CLIENT_SECRET= ??
+```
+
+## Run second terminal for Passport Oauth2 [port:8001]
+
+```
+$ php artisan serve --port=8001
+```
+
+## Running Migrations
+
+Run all of your outstanding migrations with seeder:
+
+```bash
+$ php artisan migrate --seed
+```
+
+If you would like to see which migrations have run thus far:
+
+```bash
+$ php artisan migrate:status
+```
+
+Roll back the latest migration operation. This command will rolls back the last "batch" of migrations, which may include multiple migration files:
+
+```bash
+$ php artisan migrate:rollback
+```
+
+Roll back all of your application's migrations:
+
+```bash
+$ php artisan migrate:reset
+```
+
+If you want to drop all table before seeding, you can use this command:
+
+```bash
+$ php artisan migrate:fresh --seed
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

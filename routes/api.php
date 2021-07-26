@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login']);
+Route::post('/register', [App\Http\Controllers\AuthController::class, 'register']);
+Route::middleware('auth:api')->post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
+
 Route::get('/todos', [App\Http\Controllers\TodosController::class, 'index']);
 Route::post('/todos', [App\Http\Controllers\TodosController::class, 'store']);
 Route::patch('/todos/{todo}', [App\Http\Controllers\TodosController::class, 'update']);
